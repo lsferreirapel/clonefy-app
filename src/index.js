@@ -1,13 +1,20 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
-import App from './App';
+
 import * as serviceWorker from './serviceWorker';
 
+import { BrowserRouter, Switch, Route } from 'react-router-dom';
+import Home from './pages/Home/App';
+import LoginPage from './pages/LoginPage';
+
 ReactDOM.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>,
+  <BrowserRouter>
+    <Switch>
+      <Route path="/" component={Home} exact/>
+      <Route path="/login" component={LoginPage}/>
+    </Switch>
+  </BrowserRouter>,
   document.getElementById('root')
 );
 
