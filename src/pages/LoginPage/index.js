@@ -1,5 +1,5 @@
 import React from 'react';
-import Logo from '../../assets/img/spotify-white-logo.jpg';
+import Logo from '../../assets/img/clonefy/clonefy-white-com-logo.png';
 import Login ,{ WhiteLogo, ButtonSpotifyLogin } from './styles';
 // import { Link } from 'react-router-dom';
 import { accessUrl } from '../../services/spotify';

@@ -4,16 +4,20 @@ import './index.css';
 
 import * as serviceWorker from './serviceWorker';
 
+import { DataLayer } from './data/DataLayer';
 import { BrowserRouter, Switch, Route } from 'react-router-dom';
+import reducer, { initialState } from './data/reducer';
 import Home from './pages/Home/App';
 import LoginPage from './pages/LoginPage';
 
 ReactDOM.render(
   <BrowserRouter>
-    <Switch>
-      <Route path="/" component={Home} exact/>
-      <Route path="/login" component={LoginPage}/>
-    </Switch>
+    <DataLayer initialState={initialState} reducer={reducer}>
+      <Switch>
+        <Route path="/" component={Home} exact/>
+        <Route path="/login" component={LoginPage}/>
+      </Switch>
+    </DataLayer>
   </BrowserRouter>,
   document.getElementById('root')
 );
