@@ -1,7 +1,7 @@
 import './App.css';
 import { useDataLayerValue } from '../../data/DataLayer';
 import { getTokenFromUrl } from '../../services/spotify';
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import LoginPage from '../LoginPage';
 import SpotifyWebApi from 'spotify-web-api-js';
 import Player from '../../components/Player';
@@ -9,7 +9,9 @@ import Player from '../../components/Player';
 const spotify = new SpotifyWebApi();
 
 function Home() {
-  const [{ user, token }, dispatch] = useDataLayerValue();
+  document.title = "Clonefy - Web player";
+
+  const [{ token }, dispatch] = useDataLayerValue();
 
     //Run code based on a given condition, every change in this case 
   useEffect(() => {
@@ -17,6 +19,7 @@ function Home() {
     const hash = getTokenFromUrl();
     window.location.hash = "";
     const _token = hash.access_token;
+    const _playlists = "";
 
     if (_token) {
 
@@ -35,8 +38,21 @@ function Home() {
         dispatch({
           type: 'SET_USER',
           user: user
+        });
+      });
+
+      spotify.getUserPlaylists().then(playlists => {
+        dispatch({
+          type: 'SET_PLAYLISTS',
+          playlists: playlists,
         })
-      })
+        spotify.getPlaylist(playlists.items[0].id).then(response => {
+          dispatch({
+            type: "SET_DISCOVERY_WEEKLY",
+            discover_weekly: response,
+          });
+        });
+      });
     }
   }, []);
 
@@ -46,8 +62,7 @@ function Home() {
         // Checks if the user is logged in
         token ? (
           <>
-            <h1>I am logged in</h1>
-            <Player />
+            <Player spotify />
           </>
         ) : (
           // Redirect to login page

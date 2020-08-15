@@ -5,6 +5,8 @@ import Login ,{ WhiteLogo, ButtonSpotifyLogin } from './styles';
 import { accessUrl } from '../../services/spotify';
 
 function LoginPage() {
+    document.title = "Clonefy - Login";
+
     return (
         <Login>
             <WhiteLogo src={Logo} alt=""/>

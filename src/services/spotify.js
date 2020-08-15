@@ -2,7 +2,9 @@
 export const authEndpoint = "https://accounts.spotify.com/authorize";
 // Replace with your app's client ID, redirect URI and desired scopes
 const clientId = "16ded20121f2453c8173b8690eaffb27";
-const redirectUri = "http://localhost:3000/";
+// just to debug !! REMOVE after finished developing...
+// const redirectUri = "http://localhost:3000/";
+const redirectUri = "https://clonefy.vercel.app/";
 const scopes = [
   "user-read-currently-playing",
   "user-read-recently-played",
