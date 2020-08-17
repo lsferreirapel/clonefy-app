@@ -15,16 +15,16 @@ function SideBar() {
         <SideBarDiv>
             <WhiteLogo src={Logo}/>
 
-            <SidebarOption Icon={HomeIcon} title="Home" />
-            <SidebarOption Icon={SearchIcon} title="Search" />
-            <SidebarOption Icon={LibraryMusicIcon} title="Your Library" />
+            <SidebarOption Icon={HomeIcon} title="Home" to="/" />
+            <SidebarOption Icon={SearchIcon} title="Search" to="/" />
+            <SidebarOption Icon={LibraryMusicIcon} title="Your Library" to="/" />
             
             <br />
             <SideBarTitle>PLAYLISTS</SideBarTitle>
             <SideBarLine />
 
             {playlists?.items?.map(playlist => (
-                <SidebarOption title={playlist.name} />
+                <SidebarOption to={`/playlist/${playlist.id}`} title={playlist.name} key={playlist.id}/>
             ))}
 
         </SideBarDiv>

@@ -2,7 +2,7 @@ import React from 'react';
 
 import { HeaderDiv, HeaderLeft, HeaderRight } from './styles';
 
-import { useDataLayerValue } from '../../../../data/DataLayer';
+import { useDataLayerValue } from '../../data/DataLayer';
 
 // Icons import
 import SearchIcon from '@material-ui/icons/Search';

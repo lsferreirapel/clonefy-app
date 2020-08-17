@@ -17,13 +17,8 @@ export const FooterLeft = styled.div`
     align-items: center;
     color: white;
     width: 300px;
-`; 
-export const  AlbumLogo = styled.img`
-    height: 60px;
-    width: 60px;
-    margin-right: 20px;
-    object-fit: contain;
 `;
+
 export const SongInfo = styled.div`
     color: white;
 
@@ -34,6 +29,13 @@ export const SongInfo = styled.div`
     p {
         font-size: 12px;
     }
+`;
+
+export const  AlbumLogo = styled.img`
+    height: 60px;
+    width: 60px;
+    margin-right: 20px;
+    object-fit: contain;
 `;
 
 export const FooterCenter = styled.div`
@@ -67,9 +69,33 @@ export const FooterRight = styled.div`
     display: flex;
     align-items: center;
     justify-content: space-between;
+    
+
+    :hover * .MuiSlider-track {
+        color: var(--primary);
+    }
+    :hover * .MuiSlider-thumb {
+        height: 13px;
+    }
+    :active * .MuiSlider-thumb {
+        height: 13px;
+    }
+    :active * .MuiSlider-track {
+        color: var(--primary);
+    }
+
+    * .MuiSlider-thumb {
+        height: 0;
+    }
+
+    .MuiSlider-track, .MuiSlider-rail {
+        height: 4px;
+        border-radius: 3px;
+    }
 
     * .MuiSlider-root {
-        color: green;
+        color: lightgray;
+        width: 136px;
     }
 `;
 

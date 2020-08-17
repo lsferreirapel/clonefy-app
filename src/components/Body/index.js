@@ -1,6 +1,6 @@
 import React from 'react';
 
-import Header from './components/Header';
+import Header from '../Header';
 import SongRow from './components/SongRow';
 
 import { useDataLayerValue } from '../../data/DataLayer';
@@ -11,19 +11,19 @@ import PlayCircleFilledIcon from '@material-ui/icons/PlayCircleFilled';
 import FavoriteIcon from '@material-ui/icons/Favorite';
 import MoreHorizIcon from '@material-ui/icons/MoreHoriz';
 
-function Body({ spotify }) {
-  const [{ discover_weekly }, dispatch] = useDataLayerValue();
+function Body({ playlist }) {
+  const [{ my_playlists }, dispatch] = useDataLayerValue();
 
   return (
     <BodyDiv>
-        <Header spotify={spotify}/>
+        <Header />
 
         <BodyInfo>
-          <img src={discover_weekly?.images[0]?.url} alr=""/>
+          <img src={playlist?.images[0]?.url} alr=""/>
           <BodyInfoText>
             <strong>PLAYLIST</strong>
-            <h2>{discover_weekly?.name}</h2>
-            <p>{discover_weekly?.description}</p>
+            <h2>{playlist?.name}</h2>
+            <p>{playlist?.description}</p>
           </BodyInfoText>
         </BodyInfo>
 
@@ -35,7 +35,7 @@ function Body({ spotify }) {
           </BodyIcons>
 
           {/* List of songs */}
-          {discover_weekly?.tracks.items.map(item => (
+          {playlist?.tracks.items.map(item => (
             <SongRow track={item.track} />
           ))}
         </BodySongs>

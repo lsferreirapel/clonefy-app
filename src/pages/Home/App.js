@@ -1,17 +1,20 @@
-import './App.css';
+import { HomeDiv } from './styles';
 import { useDataLayerValue } from '../../data/DataLayer';
 import { getTokenFromUrl } from '../../services/spotify';
 import React, { useEffect } from 'react';
 import LoginPage from '../LoginPage';
 import SpotifyWebApi from 'spotify-web-api-js';
-import Player from '../../components/Player';
+
+import HomeBody from '../../components/HomeBody';
+import SideBar from '../../components/SideBar';
+import Footer from '../../components/Footer';
 
 const spotify = new SpotifyWebApi();
 
 function Home() {
   document.title = "Clonefy - Web player";
 
-  const [{ token }, dispatch] = useDataLayerValue();
+  const [{ token, my_playlists }, dispatch] = useDataLayerValue();
 
     //Run code based on a given condition, every change in this case 
   useEffect(() => {
@@ -19,7 +22,6 @@ function Home() {
     const hash = getTokenFromUrl();
     window.location.hash = "";
     const _token = hash.access_token;
-    const _playlists = "";
 
     if (_token) {
 
@@ -45,13 +47,17 @@ function Home() {
         dispatch({
           type: 'SET_PLAYLISTS',
           playlists: playlists,
-        })
-        spotify.getPlaylist(playlists.items[0].id).then(response => {
-          dispatch({
-            type: "SET_DISCOVERY_WEEKLY",
-            discover_weekly: response,
+        });
+
+        playlists.items.map(playlist => {
+          spotify.getPlaylist(playlist.id).then(response => {
+            dispatch({
+              type: `SET_MY_PLAYLIST_ITEM`,
+              playlist_item: response,
+            });
           });
         });
+        
       });
     }
   }, []);
@@ -61,9 +67,11 @@ function Home() {
       {
         // Checks if the user is logged in
         token ? (
-          <>
-            <Player spotify />
-          </>
+          <HomeDiv>
+            <SideBar />
+            <HomeBody />
+            <Footer />
+          </HomeDiv>
         ) : (
           // Redirect to login page
           <LoginPage />
