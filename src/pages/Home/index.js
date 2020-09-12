@@ -1,4 +1,4 @@
-import { HomeDiv } from './styles';
+import { HomeDiv, Container } from './styles';
 import { useDataLayerValue } from '../../data/DataLayer';
 import { getTokenFromUrl } from '../../services/spotify';
 import React, { useEffect } from 'react';
@@ -63,7 +63,7 @@ function Home() {
   }, []);
 
   return (
-    <div className="App">
+    <Container>
       {
         // Checks if the user is logged in
         token ? (
@@ -77,7 +77,7 @@ function Home() {
           <LoginPage />
         )
       }
-    </div>
+    </Container>
   );
 }
 
